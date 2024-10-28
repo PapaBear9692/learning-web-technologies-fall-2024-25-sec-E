@@ -1,0 +1,32 @@
+<!-- Assessment Task 2 -->
+<students>
+    <student>
+        <slNo> 23 </slNo>
+        <name> John Carter </name>
+        <admissionDate>
+            <date> 25 </date>
+            <month> 12 </month>
+            <year> 2015 </year>
+        </admissionDate>
+    </studnt>
+
+    <student>
+        <slNo> 29 </slNo>
+        <name> Bob Marshal </name>
+        <admissionDate> 
+            <date>13 </date>
+            <month> 01 </month>
+            <year>1999 </year>
+        </admissionDate>
+    </studnt>
+    
+    <student>
+        <slNo> 35 </slNo>
+        <name> Clark Kent </name>
+        <admissionDate>
+            <date> 17 </date>
+            <month> 06 </month>
+            <year>2005 </year>
+         </admissionDate>
+    </studnt>
+</students>
