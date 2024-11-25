@@ -7,9 +7,9 @@
         $checkuser = null;
         $checkpass = null;
         
-        for(int i=0; i<sizeof($_SESSION['users']); i++){
-            if($_SESSION['users'][0] == $username)
-                $checkpass = $_SESSION['users'][1];
+        for($i=0; $i<sizeof($_SESSION['users']); $i++){
+            if($_SESSION['users'][$i][0] == $username)
+                $checkpass = $_SESSION['users'][$i][1];
         }
 
         if($username == null || empty($password)){

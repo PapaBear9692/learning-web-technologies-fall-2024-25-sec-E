@@ -11,7 +11,7 @@
     <title>Home</title>
 </head>
 <body>
-        <h1>Welcome Home! <?=$_SESSION['users'][0]?></h1>    
+        <h1>Welcome Home! <?=$_SESSION['username']?></h1>    
         <a href="logout.php"> logout </a>
 </body>
 </html>
