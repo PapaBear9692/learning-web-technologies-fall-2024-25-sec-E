@@ -1,0 +1,179 @@
+<html>
+<head>
+    <title>Sign Up</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #e8e7e3 0%, #7f7a86 100%);
+            margin: 0;
+            padding: 0;
+        }
+        fieldset {
+            width: 40%;
+            margin: 50px auto;
+            border-radius: 15px;
+            box-shadow: 0 0 30px rgba(0,0,0,0.2);
+            background-color: #a191b1;
+            padding: 30px;
+        }
+        h1, h3 {
+            color: #333;
+        }
+        table {
+            width: 100%;
+        }
+        input[type="text"],
+        input[type="email"],
+        input[type="date"],
+        input[type="number"],
+        input[type="password"],
+        select {
+            width: 80%;
+            padding: 12px;
+            margin-top: 10px;
+            border: 1px solid #4f2a2a;
+            border-radius: 8px;
+            background-color: #babbd0;
+        }
+        input[type="submit"] {
+            background: linear-gradient(135deg, #2d193a 0%, #030633 100%);
+            color: rgb(228, 212, 212);
+            border: none;
+            padding: 12px 25px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        input[type="submit"]:hover {
+            background: linear-gradient(135deg, #111d23 0%, #092a15 100%);
+        }
+        a {
+            color: #060606;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+    <script>
+        function validateForm() {
+            let username = document.forms["signupForm"]["username"].value.trim();
+            let email = document.forms["signupForm"]["email"].value.trim();
+            let gender = document.forms["signupForm"]["gender"].value;
+            let dob = document.forms["signupForm"]["dob"].value;
+            let address = document.forms["signupForm"]["address"].value.trim();
+            let phone = document.forms["signupForm"]["phone"].value.trim();
+            let password = document.forms["signupForm"]["password"].value.trim();
+            let confirmPassword = document.forms["signupForm"]["confirm_password"].value.trim();
+
+            if (username.length < 3) {
+                alert("Username must be at least 3 characters long.");
+                return false;
+            }
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email)) {
+                alert("Please enter a valid email address.");
+                return false;
+            }
+            if (gender === "") {
+                alert("Please select your gender.");
+                return false;
+            }
+            if (dob === "") {
+                alert("Please select your date of birth.");
+                return false;
+            }
+            if (address.length < 5) {
+                alert("Address must be at least 5 characters long.");
+                return false;
+            }
+            const phoneRegex = /^[0-9]{11}$/;
+            if (!phoneRegex.test(phone)) {
+                alert("Phone number must be exactly 10 digits.");
+                return false;
+            }
+            if (password.length < 6) {
+                alert("Password must be at least 6 characters long.");
+                return false;
+            }
+            if (password !== confirmPassword) {
+                alert("Passwords do not match.");
+                return false;
+            }
+
+            return true;
+        }
+    </script>
+</head>
+<body>
+    <fieldset>
+        <form name="signupForm" method="post" action="../controller/signupcheck.php" onsubmit="return validateForm()">
+            <table align="center" width="100%">
+                <tr>
+                    <td align="center">
+                        <h1><b>Sign Up</b></h1>
+                        <h3>Fill in the details to create an account</h3>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="center">Username:<br>
+                        <input type="text" name="username" required/>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="center">Email:<br>
+                        <input type="email" name="email" required/>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="center">Gender:
+                        <br>
+                        <select name="gender" required>
+                            <option value="">Select</option>
+                            <option value="male">Male</option>
+                            <option value="female">Female</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="center">Date Of Birth:
+                        <br>
+                        <input type="date" name="dob" required/>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="center">Address:<br>
+                        <input type="text" name="address" required/>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="center">Phone No:<br>
+                        <input type="number" name="phone" required/>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="center">Password:<br>
+                        <input type="password" name="password" required/>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="center">Confirm Password:<br>
+                        <input type="password" name="confirm_password" required/>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="center"><br>
+                        <input type="submit" name="submit" value="Sign Up"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="center"><br>
+                        <a href="login.html">Already have an account? Login here</a>
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </fieldset>
+</body>
+</html>

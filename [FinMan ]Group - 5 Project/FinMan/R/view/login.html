@@ -1,0 +1,144 @@
+<html>
+<head>
+    <title>Login</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #e8e7e3 0%, #7f7a86 100%);
+            margin: 0;
+            padding: 0;
+            height: 100%;
+        }
+        fieldset {
+            width: 40%;
+            margin: 50px auto;
+            border-radius: 15px;
+            box-shadow: 0 0 30px rgba(0,0,0,0.2);
+            background-color: #a191b1;
+            padding: 30px;
+        }
+        h1, h3 {
+            color: #333;
+        }
+        table {
+            width: 100%;
+        }
+        input[type="text"],
+        input[type="password"] {
+            width: 80%;
+            padding: 12px;
+            margin-top: 10px;
+            border: 1px solid #4f2a2a;
+            border-radius: 8px;
+            background-color: #babbd0;
+        }
+        input[type="submit"] {
+            background: linear-gradient(135deg, #2d193a 0%, #030633 100%);
+            color: rgb(228, 212, 212);
+            border: none;
+            padding: 12px 25px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        input[type="submit"]:hover {
+            background: linear-gradient(135deg, #111d23 0%, #092a15 100%);
+        }
+        a {
+            color: #060606;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+    <script>
+        function validateLogin() {
+            let username = document.getElementById("username").value.trim();
+            let password = document.getElementById("password").value.trim();
+
+            if (username === "") {
+                alert("Please enter your username.");
+                return false;
+            }
+            if (password === "") {
+                alert("Please enter your password.");
+                return false;
+            }
+
+            return true;
+        }
+
+        function submitLogin(event) {
+            event.preventDefault();
+
+            if (!validateLogin()) {
+                return false;
+            }
+
+            let username = document.getElementById("username").value;
+            let password = document.getElementById("password").value;
+
+            let loginData = {
+                username: username,
+                password: password
+            };
+
+            let xhttp = new XMLHttpRequest();
+            xhttp.open("POST", "../controller/logincheck.php", true);
+            xhttp.setRequestHeader("Content-Type", "application/json");
+
+            xhttp.onreadystatechange = function () {
+                if (this.readyState === 4) {
+                    if (this.status === 200) {
+                        window.location.href = "../../N/view/dashboard.php";
+                    } else {
+                        alert("Login failed: " + this.responseText);
+                    }
+                }
+            };
+
+            xhttp.send(JSON.stringify(loginData));
+        }
+    </script>
+</head>
+<body>
+    <fieldset>
+        <form id="loginForm" onsubmit="submitLogin(event)">
+            <table align="center" width="100%">
+                <tr>
+                    <td align="center">
+                        <h1><b>WELCOME!</b></h1>
+                        <h3>Enter your credentials to login</h3>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="center">Username:<br>
+                        <input type="text" id="username" name="username" />
+                    </td>
+                </tr>
+                <tr>
+                    <td align="center">Password:<br>
+                        <input type="password" id="password" name="password" />
+                    </td>
+                </tr>
+                <tr>
+                    <td align="center"><br>
+                        <input type="submit" value="Login" />
+                    </td>
+                </tr>
+                <tr>
+                    <td align="center"><br>
+                        <a href="signup.html">Don't have an account? Signup here</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="center">
+                        <a href="forgotpassword.html">Forgot your password?</a>
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </fieldset>
+</body>
+</html>
